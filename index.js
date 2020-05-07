@@ -143,16 +143,16 @@ var outputs = [];
 if (context.options) {
 var item;
 for (var x = 0; x < context.options.length; x++) {
-  item = context.options[x];
-  outputs.push(
-    item.name +
-      ' = "' +
-      item.value
-        .replace(/\n/g, "\\n")
-        .replace(/\t/g, "\\t")
-        .replace(/[']/g, '"') +
-      '"'
-  );
+item = context.options[x];
+outputs.push(
+item.name +
+' = "' +
+item.value
+.replace(/\n/g, "\\n")
+.replace(/\t/g, "\\t")
+.replace(/[']/g, '"') +
+'"'
+);
 }
 }
 return render(outputs.join(", "));
@@ -175,10 +175,10 @@ this.comment = this.comment.split("\n");
 
 if (this.comment instanceof Array) {
 comment =
-  "\n        " +
-  comment_mark +
-  this.comment.join("\n        " + comment_mark) +
-  "\n        ";
+"\n        " +
+comment_mark +
+this.comment.join("\n        " + comment_mark) +
+"\n        ";
 }
 
 // input: the default field
@@ -192,16 +192,16 @@ input = input.join("\n");
 if (isStringOrArray(this.output)) {
 output = this.output;
 if (output instanceof Array) {
-  output = output.join("\n");
+output = output.join("\n");
 }
 }
 
 // Do all most error checking
 if (
 !(
-  this.input !== null ||
-  this.input_ !== null ||
-  this.unchanged !== null
+this.input !== null ||
+this.input_ !== null ||
+this.unchanged !== null
 )
 ) {
 throw "Missing test input field (input, input_, or unchanged).";
@@ -211,20 +211,20 @@ this.input !== null &&
 (this.input_ === null || this.unchanged === null)
 ) {
 throw (
-  "Only one test input field allowed (input, input_, or unchanged): " +
-  input
+"Only one test input field allowed (input, input_, or unchanged): " +
+input
 );
 } else if (output && isStringOrArray(this.unchanged)) {
 throw "Cannot specify 'output' with 'unchanged' test input: " + input;
 } else if (!output && !isStringOrArray(this.unchanged)) {
 throw (
-  "Neither 'output' nor 'unchanged' specified for test input: " + input
+"Neither 'output' nor 'unchanged' specified for test input: " + input
 );
 } else if (input === output) {
 // Raw input and output can be the same, just omit output.
 throw (
-  "Test strings are identical.  Omit 'output' and use 'unchanged': " +
-  input
+"Test strings are identical.  Omit 'output' and use 'unchanged': " +
+input
 );
 }
 
@@ -243,7 +243,7 @@ output.indexOf("\n") !== -1
 ) {
 before_input = method_text + "(\n            ";
 before_output =
-  ",\n            " + comment_mark + " -- output --\n            ";
+",\n            " + comment_mark + " -- output --\n            ";
 }
 if (output === "") {
 before_output = "";
